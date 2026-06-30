@@ -1,0 +1,64 @@
+.row {
+  display: flex;
+  gap: clamp(5px, 1.2vw, 9px);
+  flex-wrap: wrap;
+  margin-bottom: clamp(12px, 2.5vw, 22px);
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: clamp(5px, 1.2vw, 7px) clamp(8px, 2vw, 11px) clamp(5px, 1.2vw, 7px) clamp(10px, 2.2vw, 14px);
+  border-radius: 30px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.15);
+  font-size: clamp(0.76rem, 1.9vw, 0.85rem);
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  transition: all 0.18s;
+  user-select: none;
+}
+
+.tag:hover:not(.active) {
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.tag.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.label {
+  white-space: nowrap;
+}
+
+.remove {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.tag:not(.active) .remove {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.45);
+}
+
+.remove:hover {
+  background: var(--danger) !important;
+  color: #fff !important;
+}

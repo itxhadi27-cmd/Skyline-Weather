@@ -1,0 +1,270 @@
+/* ── Container ── */
+.animContainer {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  transition: background 1.2s ease;
+  /* keep it atmospheric/subtle rather than dominant */
+  opacity: 0.85;
+}
+
+/* Calm things down further on small screens, where the animation
+   competes with content for attention */
+@media (max-width: 600px) {
+  .animContainer { opacity: 0.6; }
+  .sun, .moon { transform: scale(0.85); }
+  .cloud { opacity: 0.7; }
+  .raindrop { opacity: 0.7; }
+}
+
+/* ── Background gradients per condition ── */
+.sunny {
+  background: linear-gradient(160deg, #1a3a6b 0%, #1e5799 40%, #2472c8 100%);
+}
+.clearNight {
+  background: linear-gradient(160deg, #020818 0%, #050e2e 50%, #0a1a40 100%);
+}
+.cloudy {
+  background: linear-gradient(160deg, #1e2d45 0%, #2a3f5f 50%, #344d6e 100%);
+}
+.cloudyNight {
+  background: linear-gradient(160deg, #060c1a 0%, #0d1828 50%, #111f35 100%);
+}
+.foggy {
+  background: linear-gradient(160deg, #1a2030 0%, #252c3e 50%, #2e3650 100%);
+}
+.rainyDay {
+  background: linear-gradient(160deg, #0f1e30 0%, #162336 50%, #1c2d45 100%);
+}
+.rainyNight {
+  background: linear-gradient(160deg, #040a18 0%, #0a1122 50%, #0d1528 100%);
+}
+.snowy {
+  background: linear-gradient(160deg, #1a2a42 0%, #233450 50%, #2a3d5e 100%);
+}
+.stormy {
+  background: linear-gradient(160deg, #080d18 0%, #0d1520 50%, #121b28 100%);
+}
+
+/* ── Sun ── */
+.sun {
+  position: absolute;
+  top: 6%;
+  right: 8%;
+  width: clamp(80px, 12vw, 160px);
+  height: clamp(80px, 12vw, 160px);
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffe566 30%, #ffb700 60%, transparent 75%);
+  box-shadow: 0 0 clamp(30px,5vw,80px) clamp(10px,2vw,30px) rgba(255,200,50,0.35);
+  animation: sunPulse 4s ease-in-out infinite;
+}
+
+.sunBehind {
+  position: absolute;
+  top: 6%;
+  right: 8%;
+  width: clamp(60px, 9vw, 120px);
+  height: clamp(60px, 9vw, 120px);
+  border-radius: 50%;
+  background: radial-gradient(circle, #c8d8e8 30%, #a0b8d0 60%, transparent 75%);
+  box-shadow: 0 0 40px 12px rgba(180,210,240,0.2);
+  opacity: 0.6;
+}
+
+.sunRays {
+  position: absolute;
+  top: calc(6% + clamp(40px, 6vw, 80px));
+  right: calc(8% + clamp(40px, 6vw, 80px));
+  width: clamp(80px, 12vw, 160px);
+  height: clamp(80px, 12vw, 160px);
+  border-radius: 50%;
+  background: transparent;
+  animation: sunRotate 12s linear infinite;
+  transform-origin: center;
+}
+
+.sunRays::before,
+.sunRays::after {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  border-radius: 50%;
+  border: clamp(12px,2vw,22px) solid transparent;
+  border-top-color: rgba(255,220,80,0.15);
+  border-bottom-color: rgba(255,220,80,0.15);
+}
+
+@keyframes sunPulse {
+  0%, 100% { box-shadow: 0 0 clamp(30px,5vw,80px) clamp(10px,2vw,30px) rgba(255,200,50,0.35); }
+  50%       { box-shadow: 0 0 clamp(50px,7vw,100px) clamp(15px,3vw,40px) rgba(255,200,50,0.55); }
+}
+@keyframes sunRotate { to { transform: rotate(360deg); } }
+
+/* ── Moon ── */
+.moon {
+  position: absolute;
+  top: 7%;
+  right: 9%;
+  width: clamp(55px, 8vw, 110px);
+  height: clamp(55px, 8vw, 110px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #dde8f5 0%, #b8ccdf 55%, #8aa5c0 100%);
+  box-shadow:
+    0 0 clamp(20px,4vw,55px) clamp(8px,1.5vw,22px) rgba(180,210,240,0.22),
+    inset -8px -8px 18px rgba(100,140,180,0.3);
+  animation: moonGlow 5s ease-in-out infinite;
+}
+
+@keyframes moonGlow {
+  0%, 100% { box-shadow: 0 0 clamp(20px,4vw,55px) clamp(8px,1.5vw,22px) rgba(180,210,240,0.22), inset -8px -8px 18px rgba(100,140,180,0.3); }
+  50%       { box-shadow: 0 0 clamp(30px,5vw,70px) clamp(12px,2vw,30px) rgba(180,210,240,0.4),  inset -8px -8px 18px rgba(100,140,180,0.3); }
+}
+
+/* ── Stars ── */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: starTwinkle ease-in-out infinite;
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50%       { opacity: 0.2; transform: scale(0.5); }
+}
+
+/* ── Clouds ── */
+.cloud {
+  position: absolute;
+  left: -220px;
+  width: 200px;
+  height: 60px;
+  background: rgba(180, 200, 230, 0.14);
+  border-radius: 40px;
+  animation: cloudDrift linear infinite;
+  transform-origin: left center;
+}
+
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: rgba(180, 200, 230, 0.14);
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 100px;
+  height: 80px;
+  top: -40px;
+  left: 35px;
+}
+
+.cloud::after {
+  width: 65px;
+  height: 55px;
+  top: -28px;
+  left: 100px;
+}
+
+@keyframes cloudDrift {
+  from { left: -220px; }
+  to   { left: 110%; }
+}
+
+/* ── Raindrops ── */
+.raindrop {
+  position: absolute;
+  top: -20px;
+  width: 1.5px;
+  background: linear-gradient(to bottom, transparent, rgba(140,185,255,0.7));
+  border-radius: 1px;
+  animation: rainFall linear infinite;
+}
+
+@keyframes rainFall {
+  from { transform: translateY(-30px); }
+  to   { transform: translateY(110vh); }
+}
+
+/* ── Snowflakes ── */
+.snowflake {
+  position: absolute;
+  top: -20px;
+  color: rgba(210,230,255,0.85);
+  font-size: inherit;
+  animation: snowFall linear infinite;
+  user-select: none;
+}
+
+@keyframes snowFall {
+  0%   { transform: translateY(-20px) translateX(0) rotate(0deg); }
+  25%  { transform: translateY(25vh)  translateX(12px) rotate(90deg); }
+  50%  { transform: translateY(50vh)  translateX(-8px) rotate(180deg); }
+  75%  { transform: translateY(75vh)  translateX(10px) rotate(270deg); }
+  100% { transform: translateY(110vh) translateX(0)    rotate(360deg); }
+}
+
+/* ── Fog layers ── */
+.fogLayer1,
+.fogLayer2,
+.fogLayer3 {
+  position: absolute;
+  height: 60px;
+  left: -100%;
+  right: -100%;
+  border-radius: 50%;
+  filter: blur(18px);
+}
+
+.fogLayer1 {
+  top: 20%;
+  background: rgba(200,210,230,0.07);
+  animation: fogDrift 14s ease-in-out infinite;
+}
+
+.fogLayer2 {
+  top: 40%;
+  background: rgba(200,210,230,0.09);
+  animation: fogDrift 20s ease-in-out infinite reverse;
+  animation-delay: -6s;
+}
+
+.fogLayer3 {
+  top: 60%;
+  background: rgba(200,210,230,0.06);
+  animation: fogDrift 17s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+@keyframes fogDrift {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(8%); }
+}
+
+/* ── Lightning ── */
+.lightning {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 20%, rgba(200,220,255,0.12), transparent 60%);
+  opacity: 0;
+  animation: lightningFlash 6s ease-in-out infinite;
+}
+
+.lightning1 { animation-delay: 0s; }
+.lightning2 { animation-delay: 3.5s; }
+
+@keyframes lightningFlash {
+  0%, 90%, 100% { opacity: 0; }
+  92%            { opacity: 1; }
+  94%            { opacity: 0; }
+  96%            { opacity: 0.7; }
+  98%            { opacity: 0; }
+}
+
+/* ── Ensure content layers above animation ── */
+/* (Applied via z-index in App) */

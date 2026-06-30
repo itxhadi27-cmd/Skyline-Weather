@@ -1,0 +1,188 @@
+/* ── Shell: full viewport, stacking animation + content ── */
+.appShell {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ── Content layer sits above animation ── */
+.content {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* ── Main container ── */
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(16px, 3vw, 36px) clamp(12px, 3vw, 24px) clamp(60px, 8vw, 100px);
+  /* Prevent any child from overflowing horizontally */
+  overflow-x: hidden;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(18px, 3vw, 32px);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  letter-spacing: -0.5px;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+}
+
+.logoAccent {
+  color: #7ec8ff;
+  font-style: normal;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.5vw, 12px);
+  flex-wrap: wrap;
+}
+
+/* ── Locating badge ── */
+.locatingBadge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 20px;
+  padding: 5px 12px;
+}
+
+/* ── Unit toggle ── */
+.unitToggle {
+  display: flex;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.unitBtn {
+  padding: 6px clamp(10px, 2vw, 16px);
+  border: none;
+  background: none;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  font: 500 0.82rem 'Inter', sans-serif;
+  transition: background 0.18s, color 0.18s;
+}
+
+.unitBtn.unitOn {
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+}
+
+/* ── Icon button ── */
+.iconBtn {
+  width: clamp(34px, 5vw, 40px);
+  height: clamp(34px, 5vw, 40px);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.85);
+  cursor: pointer;
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.iconBtn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ── Empty / loading states ── */
+.emptyBox {
+  text-align: center;
+  padding: clamp(40px, 8vw, 80px) 20px;
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 18px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+}
+
+.emptyIcon {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 14px;
+}
+
+.emptyTitle {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: rgba(255,255,255,0.9);
+}
+
+.emptyText {
+  font-size: clamp(0.78rem, 2vw, 0.88rem);
+  color: rgba(255,255,255,0.55);
+  max-width: 320px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── Spinner ── */
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255,255,255,0.15);
+  border-top-color: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto 16px;
+}
+
+.spinnerSm {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-top-color: rgba(255,255,255,0.75);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Tablet ── */
+@media (max-width: 768px) {
+  .app {
+    padding-bottom: 60px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .header {
+    gap: 8px;
+  }
+  .locatingBadge {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+  }
+}

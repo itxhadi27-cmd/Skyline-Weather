@@ -1,0 +1,86 @@
+.section {
+  margin-bottom: clamp(14px, 2.5vw, 22px);
+}
+
+.sectionLabel {
+  font-size: clamp(0.6rem, 1.4vw, 0.66rem);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(140px, 22vw, 190px), 1fr));
+  gap: clamp(8px, 1.8vw, 14px);
+}
+
+.card {
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glassBorder);
+  border-radius: 16px;
+  padding: clamp(12px, 2.5vw, 18px);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: var(--shadow);
+  outline: none;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.card:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--glow);
+}
+
+.card.selected {
+  border-color: var(--accent);
+}
+
+.cardGlow {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, var(--glow), transparent 70%);
+  pointer-events: none;
+}
+
+.ico {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 7px;
+}
+
+.name {
+  font-size: clamp(0.78rem, 2vw, 0.9rem);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.country {
+  font-size: clamp(0.64rem, 1.5vw, 0.7rem);
+  color: var(--text3);
+  margin-top: 1px;
+}
+
+.temp {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 6px 0 2px;
+  color: var(--text);
+}
+
+.desc {
+  font-size: clamp(0.66rem, 1.6vw, 0.74rem);
+  color: var(--text2);
+  text-transform: capitalize;
+}

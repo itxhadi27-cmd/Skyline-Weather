@@ -1,0 +1,154 @@
+.wrap {
+  margin-bottom: clamp(14px, 2.5vw, 22px);
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.inputWrap {
+  flex: 1;
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: clamp(11px, 2.5vw, 14px) clamp(14px, 3vw, 20px);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font: clamp(0.9rem, 2.2vw, 1rem) 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(90,159,255,0.2);
+}
+
+.input::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
+/* ── Dropdown ── */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: rgba(20,28,48,0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  z-index: 300;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  animation: dropIn 0.15s ease;
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.item {
+  padding: clamp(9px, 2vw, 12px) 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: background 0.12s;
+}
+
+.item:last-child { border-bottom: none; }
+
+.item:hover,
+.item.focused {
+  background: rgba(255,255,255,0.08);
+}
+
+.pin { font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+
+.cityName {
+  font-size: clamp(0.82rem, 2vw, 0.9rem);
+  font-weight: 500;
+  color: #fff;
+}
+
+.sub {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+
+.hint {
+  padding: 14px 16px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ── Button ── */
+.addBtn {
+  padding: clamp(11px, 2.5vw, 14px) clamp(16px, 3vw, 24px);
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font: 500 clamp(0.82rem, 2vw, 0.9rem) 'Inter', sans-serif;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(90,159,255,0.35);
+}
+
+.addBtn:hover:not(:disabled) {
+  background: var(--accentH);
+  box-shadow: 0 4px 22px rgba(90,159,255,0.5);
+}
+
+.addBtn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ── Spinners ── */
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-top-color: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.spinnerSm {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 560px) {
+  .row { flex-wrap: wrap; }
+  .inputWrap { flex: 1 1 100%; }
+  .addBtn { width: 100%; justify-content: center; }
+}

@@ -1,0 +1,29 @@
+.toast {
+  position: fixed;
+  bottom: clamp(16px, 4vw, 28px);
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(20,28,48,0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: rgba(255,255,255,0.92);
+  padding: 11px clamp(18px, 4vw, 26px);
+  border-radius: 30px;
+  font-size: clamp(0.78rem, 2vw, 0.88rem);
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 9999;
+  white-space: nowrap;
+  max-width: 90vw;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
